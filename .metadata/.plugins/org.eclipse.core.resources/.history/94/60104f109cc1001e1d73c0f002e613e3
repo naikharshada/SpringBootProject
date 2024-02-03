@@ -1,0 +1,19 @@
+package com.example.demo.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.Student;
+import com.example.demo.exception.NoStudentFoundException;
+
+@Service
+public class StudentServiceImpl implements StudentService{
+
+	@Override
+	public Student findStudentById(Integer rollNo) {
+		if(rollNo==101) {
+			return new Student(101,"Saya","Goregaon");
+		} else {
+			throw new NoStudentFoundException("No Student Found");
+		}	
+	}
+}

@@ -1,0 +1,22 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.exception.NoStudentFoundException;
+import com.example.demo.repository.StudentRepository;
+
+@Service
+public class StudentServiceImpl implements StudentService{
+	
+	
+	@Override
+	public String findStudentById(Integer rollNo) {
+	if(rollNo==101) {
+			return "Student Found";
+		} else {
+			//throws Exception
+			throw new NoStudentFoundException("No Student Found");
+		}	
+	}
+}

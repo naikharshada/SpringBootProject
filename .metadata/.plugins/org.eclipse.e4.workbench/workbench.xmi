@@ -410,7 +410,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_HBSb4MGTEe6Fy4vlPHkH6g" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_QhvZIMJpEe62sagbOB0c3Q" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_HBWH18GTEe6Fy4vlPHkH6g"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_HTuU8MJqEe6KWt_o1jzFgw" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_HBWH18GTEe6Fy4vlPHkH6g"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_HBSb7cGTEe6Fy4vlPHkH6g" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -418,8 +418,8 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_HBSb78GTEe6Fy4vlPHkH6g" elementId="org.eclipse.ui.workbench.edit">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_QhvZJsJpEe62sagbOB0c3Q" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_HBVfaMGTEe6Fy4vlPHkH6g"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_QhvZJ8JpEe62sagbOB0c3Q" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_HBWGnMGTEe6Fy4vlPHkH6g"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_HTymYMJqEe6KWt_o1jzFgw" elementId="undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" tooltip="Undo" enabled="false" command="_HBVfaMGTEe6Fy4vlPHkH6g"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_HT1CoMJqEe6KWt_o1jzFgw" elementId="redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" tooltip="Redo" enabled="false" command="_HBWGnMGTEe6Fy4vlPHkH6g"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_HBSb88GTEe6Fy4vlPHkH6g" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -443,7 +443,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_HBScIcGTEe6Fy4vlPHkH6g" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_QhvZLcJpEe62sagbOB0c3Q" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_HBWHksGTEe6Fy4vlPHkH6g"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_HT230MJqEe6KWt_o1jzFgw" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_HBWHksGTEe6Fy4vlPHkH6g"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_HBScLcGTEe6Fy4vlPHkH6g" elementId="SpringBootYMLPropertyEditor" visible="false">
         <tags>Draggable</tags>

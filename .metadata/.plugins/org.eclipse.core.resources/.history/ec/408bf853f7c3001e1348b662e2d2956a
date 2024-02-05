@@ -1,0 +1,16 @@
+package com.example.demo.service;
+
+import org.springframework.stereotype.Service;
+import lombok.extern.slf4j.Slf4j;
+
+@Service
+@Slf4j
+public class SpringBootDemoAsyncService {
+	
+	public void processTask(String payload) {
+		log.info("Strating Thread - processing payload {}", payload);
+		log.info("length of payload string is {}", payload.length());
+	   log.info("Existing thread - processing payload{} completed", payload);
+	}
+	
+}

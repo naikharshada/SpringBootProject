@@ -1,5 +1,0 @@
-package com.example.demo.repository;
-
-public interf StudentRepository extends JpaRepository<Student, Integer> {
-
-}

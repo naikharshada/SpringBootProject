@@ -1,0 +1,23 @@
+package com.example.demo.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class SpringBootDemoService {
+	
+	public void processTask() {
+		List<String> taskList = new ArrayList<>();
+		taskList.add("apple");
+		taskList.add("orange");
+		taskList.add("grapes");
+		taskList.add("pineapple");
+		taskList.add("papaya");
+		taskList.add("lemon");
+		taskList.add("coconut");
+		taskList.add("banana");
+		taskList.add("sapota");
+		taskList.add("muskmelon");
+		taskList.add("guvava");
+	}
+
+}

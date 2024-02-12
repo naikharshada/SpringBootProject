@@ -1,0 +1,39 @@
+package com.example.demo.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.entity.Student;
+import com.example.demo.repository.StudentRepository;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+@RestController
+public class HomeController {
+	
+	@Autowired
+	private StudentRepository studentRepository;
+	
+	@GetMapping("/")
+	public String index() {
+		return "Welcome to spring boot crud application!";
+	}
+	
+	//Handler for creating new record in DB
+	@PostMapping("/saveStudent")
+	public Student saveData(@RequestBody Student student) {
+		studentRepository.save(student);
+		return student;	
+	}
+	
+	//Handler for fetch all data from db
+	@GetMapping("/getAllStudent")
+	public List<Student> getAll() {
+		List<Student> studentList = studentRepository.findAll();
+		return studentList;
+	}
+}

@@ -1,0 +1,28 @@
+package com.example.demo.entity;
+
+import java.util.Set;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter 
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Course {
+	
+	@Id
+	@GeneratedValue
+	private Long id;
+	private String title;
+	private int modules;
+	private double fee;
+
+	@ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
+	private Set<Student> students;
+}
+

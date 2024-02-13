@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Delete resource &apos;validation-example&apos;" deleteContents="true" description="Delete resource &apos;validation-example&apos;" element1="/validation-example" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1707107055865"/>&#x0A;<refactoring comment="Rename resource &apos;spring-data-jpa-mapping&apos; to &apos;spring-jpa-OneToMany-mapping&apos;" description="Rename resource &apos;spring-data-jpa-mapping&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/spring-data-jpa-mapping" name="spring-jpa-OneToMany-mapping" stamp="1707454062439" updateReferences="true"/>
-</session>

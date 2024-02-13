@@ -1,0 +1,9 @@
+package com.example.demo.entity;
+
+public class Product {
+
+	private int pid;
+	private String productName;
+	private int qty;
+	private int price;
+}

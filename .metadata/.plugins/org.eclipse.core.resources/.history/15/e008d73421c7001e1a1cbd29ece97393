@@ -1,0 +1,5 @@
+package com.example.demo.service;
+
+public interface CourseService {
+	List<Course> findByFeeLessThan(double fee);
+}

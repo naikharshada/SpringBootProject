@@ -1,8 +1,0 @@
-package com.example.demo.dto;
-
-public class OrderResponse {
-	
-	private String name;
-	private String productName;
-
-}

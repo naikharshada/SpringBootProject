@@ -1,0 +1,53 @@
+package com.example.demo.entity;
+
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter 
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Student {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	@Column(name = "name")
+	@NotEmpty
+	@Size(min = 3, message = "name should have at least 3 characters")
+	private String name;
+	
+	@Column(name = "age")
+	@Positive
+	@Digits(fraction = 0, integer = 2)
+	private int age;
+	
+	@Column(name = "dept")
+	@NotEmpty
+	private String dept;
+	
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "Student_Course_Table",
+	joinColumns = {
+			@JoinColumn(name = "student_id", referencedColumnName = "id")
+	},
+	inverseJoinColumns = {
+			@JoinColumn(name = "course_id", referencedColumnName = "id")
+	})
+	//@JsonManagedReference
+	private Set<Course> courses;
+	
+}

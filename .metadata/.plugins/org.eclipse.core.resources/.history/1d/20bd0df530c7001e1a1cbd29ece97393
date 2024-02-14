@@ -1,0 +1,40 @@
+package com.example.demo.entity;
+
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter 
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class Course {
+	
+	@Id
+	@GeneratedValue
+	private Long id;
+	
+	@Column(name = "title")
+	@NotEmpty
+	private String title;
+	
+	@Column(name = "modules")
+	@NotNull
+	@Positive
+	private int modules;
+
+	@ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
+	@JsonBackReference
+	private Set<Student> students;
+}
+

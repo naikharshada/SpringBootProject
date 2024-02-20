@@ -1,0 +1,32 @@
+package com.example.demo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.example.demo.entity.Employee;
+
+@Controller
+public class HomeController {
+	
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
+	
+	@GetMapping("/saveEmp")
+	public String loadSaveEmp() {
+		return "emp_save";
+	}
+	
+	@GetMapping("/editEmp")
+	public String loadEditEmp() {
+		return "edit_emp";
+	}
+	
+	@PostMapping("/saveEmp")
+	public String saveEmp(@ModelAttribute Employee employee) {
+		return "emp_save";
+	}
+}

@@ -11,18 +11,13 @@ public class Student {
 	@Id
 	private int rollNo;
 	
-	@Column(name = "name", nullable = false)
-	
-	//user name should not be null or empty
+	@Column(name = "name")
 	//user name should have at least 3 characters
-	@NotEmpty
 	@Size(min = 3, message = "user name should have at least 3 characters")
 	private String name;
 	
 	@Column(name = "Address")
-	//address should not be null or empty
 	//address should have at least 3 characters
-	@NotEmpty
 	@Size(min = 3, message = "address should have at least 3 characters")
 	private String Address;
 	

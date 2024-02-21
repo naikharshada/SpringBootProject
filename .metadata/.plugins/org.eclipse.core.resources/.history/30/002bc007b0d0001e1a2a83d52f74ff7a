@@ -1,0 +1,59 @@
+package com.example.demo.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dto.StudentDto;
+import com.example.demo.entity.Student;
+
+@Service
+public interface StudentService {
+	
+	public Student findStudentById(Integer rollNo);
+	
+	public String addStudent(Student student);
+	
+	//save with DTO
+	public String addStduentWithDto(StudentDto studentDto);
+	
+	public String updateStudent(Student student);
+	
+	//upate with DTO
+	public String updateStudentWithDto(StudentDto studentDto);
+	
+	public String deleteStudent(Integer rollNo);
+	
+	//delete from dto
+	public String deleteStudentWithDto(Integer rollNo);
+	
+	public List<Student> getAllStudent();
+	
+	//Dto mapping to make list of all
+	public List<StudentDto> getAll();
+	
+	public Student getStudent(Integer rollNo);
+	
+	//Dtomapping 
+	public StudentDto mapEntityToDto(Student student);
+	
+	public List<Student> getAllStudentUsingJPAQL();
+	
+	public List<Student> getStudentByAddressUsingJPAQL(String Address);
+	
+	public List<Student> getStudentByNameOrAddressUsingJPAQL(String Address, String name);
+	
+	public Integer updateNameByRollnoJPAQL(int rollNo, String name);
+	
+	public List<Student> getAllStudentUsingNativeQuery();
+	
+	public List<Student> getStudentByAddressUsingNative(String Address);
+	
+	public Integer updateStudentNative(String name, String Address, int rollNo);
+	
+	public Integer updateNameByRollnoNative(String name, int rollNo);
+	
+	public String insertStudentNative(int rollNo, String name, String Address);
+	
+	public Integer deleteStudentNative(int rollNo);
+}

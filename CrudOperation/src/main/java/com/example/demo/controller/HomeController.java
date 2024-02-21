@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.StudentDto;
 import com.example.demo.entity.Student;
 import com.example.demo.exception.NoStudentFoundException;
 import com.example.demo.repository.StudentRepository;
@@ -31,7 +32,6 @@ public class HomeController {
 	@Autowired
 	private StudentService studentService;
 	
-	
 	@GetMapping("/")
 	public String index() {
 		return "Welcome to spring boot crud application!";
@@ -41,20 +41,27 @@ public class HomeController {
 	//Handler for creating new record in DB
 	@PostMapping()
 	public String saveData(@Valid @RequestBody Student student) {
-		if(studentService.findStudentById(student.getRollNo()) == null) {
-		studentService.addStudent(student);
-		return "student added successfully";
-		} else {
-			return "student already exist";
-		}
+		return studentService.addStudent(student);
+	}
+	
+	//Hnadler to save with DTO_MAPPING
+	@PostMapping("/Dto")
+	public String saveWithDto(@Valid @RequestBody StudentDto studentDto) {
+		return studentService.addStduentWithDto(studentDto);
 	}
 	
 	//handle to fetch a single record with exception handling
 	@GetMapping("{rollNo}")
 	public Student getStudentData(@PathVariable("rollNo") Integer rollNo) {
-		if(studentService.findStudentById(rollNo) == null)
-			throw new NoStudentFoundException("no student found");
 		return studentService.getStudent(rollNo);
+	}
+	
+	//handler to get data by id from DTO_mapping
+	@GetMapping("/Dto/{rollNo}")
+	public ResponseEntity<StudentDto> getStudent(@PathVariable("rollNo") Integer rollNo) {
+		Student student = studentService.findStudentById(rollNo);
+		StudentDto studentDto = studentService.mapEntityToDto(student);
+		return ResponseEntity.ok(studentDto);
 	}
 	
 	//Handler for fetch all data from db
@@ -63,27 +70,32 @@ public class HomeController {
 		return studentService.getAllStudent();
 	}
 	
+	//Handler for fetch all data from db DTOMAPPING
+		@GetMapping("/Dto")
+		public List<StudentDto> getAllWithDto() {
+			return studentService.getAll();
+		}
+	
+	
 	//Handle for delete a particular record from db with exception handling
 	@DeleteMapping("{rollNo}")
 	public String deleteStudent(@PathVariable("rollNo") Integer rollNo) {
-		if(studentService.findStudentById(rollNo) == null) {
-			throw new NoStudentFoundException("No Student Found");
-		} else {
-			studentService.deleteStudent(rollNo);
-			return "deleted successfully";
-		}
+			return studentService.deleteStudent(rollNo);
 	}
 	
 	//handle to update a record of db with exception handling
 	@PutMapping()
 	public String updateStudentData(@Valid @RequestBody Student student) {
-		if(studentService.findStudentById(student.getRollNo()) == null) {
-			throw new NoStudentFoundException("No student found");
-		} else {
-		studentService.updateStudent(student);
-		return "updated successfully";
-		}
-}
+		return studentService.updateStudent(student);
+	}
+	
+	//handle to update a record of db with exception handling and DTO_MAPPING
+	@PutMapping("/Dto")
+	public String updateStudentWithDto(@Valid @RequestBody StudentDto studentdto) {
+		return studentService.updateStudentWithDto(studentdto);
+	}
+	
+	
 	
 	
 	//******JPAQL Query*******
@@ -96,28 +108,22 @@ public class HomeController {
 	//handler to get records by address using JPAQL query
 	@GetMapping("/getStudentByAddrUsingJPAQL/{Address}")
 	public List<Student> getStudentByAddressUsingJPAQL(@PathVariable String Address) {
-		if(studentService.getStudentByAddressUsingJPAQL(Address).isEmpty())
-			throw new NoStudentFoundException("No student found");
 		return studentService.getStudentByAddressUsingJPAQL(Address);
 	}
 	
 	//handler to get records by name or address using JPAQL query
 	@GetMapping("/getStudentByNameOrAddrUsingJPAQL/{Address}/{name}")
 	public List<Student> getStudentByNameOrAddressUsingJPAQL(@PathVariable String Address, @PathVariable String name) {
-		if(studentService.getStudentByNameOrAddressUsingJPAQL(Address, name).isEmpty())
-			throw new NoStudentFoundException("No student found");
 		return studentService.getStudentByNameOrAddressUsingJPAQL(Address, name);
 	}
 	
 	//handler to update name by rollno using JPAQL query
 	@PutMapping("/updateNameByRollnoJPAQL/{rollNo}/{name}")
 	public String updateNameByRollJPAQL(@PathVariable int rollNo, @PathVariable String name) {
-		if(studentService.findStudentById(rollNo) == null) {
-			throw new NoStudentFoundException("No student found");
-		} else {
 		return studentService.updateNameByRollnoJPAQL(rollNo, name) + " student(s) updated";	
-		}
 	}
+	
+	
 	
 	//*****Native Query*****
 	//handler to get all records using native query
@@ -129,48 +135,30 @@ public class HomeController {
 	//handler to get records by address using native query
 		@GetMapping("/getStudentByAddrUsingNative/{Address}")
 		public List<Student> getStudentByAddressUsingNative(@PathVariable String Address) {
-			if(studentService.getStudentByAddressUsingNative(Address).isEmpty())
-				throw new NoStudentFoundException("No student found");
 			return studentService.getStudentByAddressUsingNative(Address);
 		}
 		
 		//handler to insert records using native query
 		@PostMapping("/insertStudentNative")
 		public String insertStudentNative(@Valid @RequestBody Student student) {
-			if(studentService.findStudentById(student.getRollNo()) == null) {
-			return studentService.insertStudentNative(student.getRollNo(), student.getName(), student.getAddress()) + " student(s) inserted";
-		} else {
-			return "Student already exists.";
-		}
+			return studentService.insertStudentNative(student.getRollNo(), student.getName(), student.getAddress());
 		}
 		
 	//handler to update records using native query
 		@PutMapping("/updateStudentNative")
 		public String updateStudentNative(@Valid @RequestBody Student student) {
-			if(studentService.findStudentById(student.getRollNo()) == null) {
-				throw new NoStudentFoundException("No student found");
-		} else {
 			return studentService.updateStudentNative(student.getName(), student.getAddress(), student.getRollNo()) + " student(s) updated";
-		}
 	}
 		
 	//handler to update name by rollno using native query
 	@PutMapping("/updateNameByRollnoNative/{rollNo}/{name}")
 	public String updateNameByRollNative(@PathVariable int rollNo, @Valid @PathVariable String name) {
-		if(studentService.findStudentById(rollNo) == null) {
-			throw new NoStudentFoundException("No student found");
-		} else {
 		return studentService.updateNameByRollnoNative(name, rollNo) + " student(s) updated";
-		}
 	}
 	
 	//handler to delete records using native
 	@DeleteMapping("/deleteStudentNative/{rollNo}")
 	public String deleteStudentNative(@PathVariable int rollNo) {
-		if(studentService.findStudentById(rollNo) == null) {
-			throw new NoStudentFoundException("No student found");
-		} else {
 		return studentService.deleteStudentNative(rollNo) + " student(s) deleted";
-		}
 	}
 }

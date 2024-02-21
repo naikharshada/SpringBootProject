@@ -8,11 +8,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.dto.StudentDto;
 import com.example.demo.entity.Student;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Integer> {
-	
+
 	//JPQAL query
 	@Query("select s from Student s")
 	public List<Student> getAllStudentUsingJPAQL();

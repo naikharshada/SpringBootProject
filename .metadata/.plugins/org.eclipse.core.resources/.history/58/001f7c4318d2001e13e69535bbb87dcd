@@ -1,0 +1,19 @@
+package com.example.demo.service;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dto.FlightBookingRequest;
+import com.example.demo.dto.FlightBookingResponse;
+import com.example.demo.repository.PassengerInfoRepository;
+import com.example.demo.repository.PaymentInfoRepository;
+
+@Service
+public class FlightBookingService {
+	
+	private PassengerInfoRepository passengerInfoRepository;
+	private PaymentInfoRepository paymentInfoRepository;
+	
+	public FlightBookingResponse bookFlightTicket(FlightBookingRequest request) {
+		
+	}
+}

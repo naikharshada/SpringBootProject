@@ -31,7 +31,7 @@ public interface StudentService {
 	
 	public Student getStudent(Integer rollNo);
 	
-	//Dtomapping 
+	//Dtomapping to get one by id
 	public StudentDto mapEntityToDto(Student student);
 	
 	public List<Student> getAllStudentUsingJPAQL();

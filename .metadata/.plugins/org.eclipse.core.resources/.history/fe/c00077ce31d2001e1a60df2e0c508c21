@@ -1,0 +1,15 @@
+package com.example.demo.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@Controller
+public class BalanceExceptionHandler {
+	
+	@ExceptionHandler(value = {InsufficientAmountException.class})
+	public ResponseEntity<Object> handleInsufficientAmountException(InsufficientAmountException insufficientAmountExecption) {
+		ApiError apiError = new ApiError()
+				insufficientAmountExecption.getMessage();
+	}
+}

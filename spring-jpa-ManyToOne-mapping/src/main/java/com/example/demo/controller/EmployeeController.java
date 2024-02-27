@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Employee;
-import com.example.demo.entity.service.EmployeeService;
+import com.example.demo.service.EmployeeService;
 
 @RestController
 @RequestMapping("/Employee")

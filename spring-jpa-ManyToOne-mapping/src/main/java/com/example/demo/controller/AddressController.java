@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Address;
 import com.example.demo.entity.Employee;
-import com.example.demo.entity.service.AddressService;
-import com.example.demo.entity.service.EmployeeService;
+import com.example.demo.service.AddressService;
+import com.example.demo.service.EmployeeService;
 
 @RestController
 @RequestMapping("/Address")

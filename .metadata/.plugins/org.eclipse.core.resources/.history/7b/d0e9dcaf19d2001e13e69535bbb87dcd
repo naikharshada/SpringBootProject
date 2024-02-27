@@ -1,0 +1,27 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dto.FlightBookingRequest;
+import com.example.demo.dto.FlightBookingResponse;
+import com.example.demo.entity.PassengerInfo;
+import com.example.demo.repository.PassengerInfoRepository;
+import com.example.demo.repository.PaymentInfoRepository;
+
+@Service
+public class FlightBookingService {
+	
+	@Autowired
+	private PassengerInfoRepository passengerInfoRepository;
+	
+	@Autowired
+	private PaymentInfoRepository paymentInfoRepository;
+	
+	public FlightBookingResponse bookFlightTicket(FlightBookingRequest request) {
+		FlightBookingResponse response = null;
+		
+		PassengerInfo passengerInfo = request.getPassengerInfo();
+		passengerInfo = passengerInfoRepository.save(passengerInfo);
+	}
+}

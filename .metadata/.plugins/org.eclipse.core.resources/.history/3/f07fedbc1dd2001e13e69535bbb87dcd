@@ -1,0 +1,10 @@
+package com.example.demo.utils;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class PaymentUtils {
+	
+	private static Map<String, Double> paymentMap = new HashMap<>();
+
+}

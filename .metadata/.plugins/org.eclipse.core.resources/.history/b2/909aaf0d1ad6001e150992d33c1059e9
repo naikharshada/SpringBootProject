@@ -1,0 +1,25 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.commondto.Payment;
+import com.example.demo.commondto.TransactionRequest;
+import com.example.demo.entity.Order;
+import com.example.demo.repository.OrderRepository;
+
+@Service
+public class OrderService {
+	
+	@Autowired
+	private OrderRepository orderRepository;
+	
+	public Order saveOrder(TransactionRequest request) {
+		Order order = request.getOrder();
+		Payment payment = request.getPayment();
+		payment.setOrderId(order.getId());
+		payment.setAmount(order.getPrice())
+		//rest call
+		return orderRepository.save(order);
+	}	
+}

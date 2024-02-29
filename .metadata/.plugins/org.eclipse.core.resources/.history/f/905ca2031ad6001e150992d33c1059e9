@@ -1,0 +1,11 @@
+package com.example.demo.commondto;
+
+import com.example.demo.entity.Order;
+
+public class TransactionResponse {
+	
+	private Order order;
+	private int amount;
+	private String transactionId;
+
+}

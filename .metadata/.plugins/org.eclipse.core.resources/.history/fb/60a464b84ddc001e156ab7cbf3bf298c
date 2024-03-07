@@ -1,0 +1,37 @@
+package com.example.demo.service;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+import com.example.demo.dto.CustomerDTO;
+import com.example.demo.entity.Customer;
+import com.example.demo.repository.CustomerRepository;
+
+@Service
+public class CustomerService {
+	
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Async
+	public CompletableFuture<List<CustomerDTO>> createCustomer(List<CustomerDTO> customerDto) {
+		List<Customer> cust = convertToEntityList(customerDto);
+		List<Customer> savedCust = customerRepository.saveAll(cust);
+		return CompletableFuture.completedFuture(convertToDTOList(savedCust));
+	}
+	
+	private CustomerDTO convertToDTO(Customer customer) {
+		CustomerDTO customerDTO = new CustomerDTO();
+		customerDTO.setId(customer.getId());
+		customerDTO.setName(customer.getName());
+		customerDTO.setAddress(customer.getAddress());
+		customerDTO.setEmail(customer.getEmail());
+		customerDTO.setPhone(customer.getPhone());
+		return customerDTO;
+	}
+
+
+}

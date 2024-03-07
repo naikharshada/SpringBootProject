@@ -1,0 +1,13 @@
+package com.example.demo.entity;
+
+@Entity
+@Getter
+@Setter
+public class Ticket {
+	
+	@Id
+	private int id;
+	private int amount;
+	private String category;
+
+}

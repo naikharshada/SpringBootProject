@@ -1,0 +1,54 @@
+package com.example.demo.service;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
+import com.example.demo.dto.CustomerDTO;
+import com.example.demo.entity.Customer;
+import com.example.demo.repository.CustomerRepository;
+
+@Service
+public class CustomerService {
+	
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@Async
+	public CompletableFuture<List<CustomerDTO>> createCustomer(List<CustomerDTO> customerDto) {
+		List<Customer> cust = convertToEntityList(customerDto);
+		List<Customer> savedCust = customerRepository.saveAll(cust);
+		return CompletableFuture.completedFuture(convertToDTOList(savedCust));
+	}
+	
+	//conversions
+	private List<CustomerDTO> convertToDTOList(List<Customer> customers) {
+		return customers.stream().map(this::convertToDTO).collect(Collectors.toList());
+	}
+	
+	private List<Customer> convertToEntityList(List<CustomerDTO> customerDTO) {
+		return customerDTO.stream().map(this::convertToEntity).collect(Collectors.toList());
+	}
+	
+	private CustomerDTO convertToDTO(Customer customer) {
+		CustomerDTO customerDTO = new CustomerDTO();
+		customerDTO.setId(customer.getId());
+		customerDTO.setName(customer.getName());
+		customerDTO.setAddress(customer.getAddress());
+		customerDTO.setEmail(customer.getEmail());
+		customerDTO.setPhone(customer.getPhone());
+		return customerDTO;
+	}
+	
+	private Customer convertToEntity(CustomerDTO customerDTO) {
+		Customer customer = new Customer();
+		customer.setId(customerDTO.getId());
+		customer.setName(customerDTO.getName());
+		customer.setAddress(customerDTO.getAddress());
+		customer.setEmail(customerDTO.getEmail());
+		customer.setPhone(customerDTO.getPhone());
+		return customer;
+	}
+}

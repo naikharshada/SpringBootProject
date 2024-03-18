@@ -1,8 +1,0 @@
-package com.example.demo.entity;
-
-@Entity
-@Getter
-@Setter
-public class Customer {
-
-}

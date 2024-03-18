@@ -12,8 +12,10 @@ import com.example.demo.repository.CustomerRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
+@Slf4j
 public class CustomerService {
 	
 	@Autowired
@@ -24,12 +26,15 @@ public class CustomerService {
 	public CompletableFuture<List<CustomerDTO>> createCustomer(List<CustomerDTO> customerDto) {
 		List<Customer> cust = convertToEntityList(customerDto);
 		List<Customer> savedCust = customerRepository.saveAll(cust);
+		log.info("created " + Thread.currentThread().getName());
 		return CompletableFuture.completedFuture(convertToDTOList(savedCust));
+		
 	}
 	
 	//getAll
 	@Async
 	public CompletableFuture<List<CustomerDTO>> getAllCustomer() {
+		log.info("Listed " + Thread.currentThread().getName());
 		return CompletableFuture.completedFuture(customerRepository.findAll().stream().map(this::convertToDTO)
 				.collect(Collectors.toList()));
 	}
@@ -37,6 +42,7 @@ public class CustomerService {
 	//getAllById
 	@Async
 	public CompletableFuture<CustomerDTO> getCustomerById(Long id) {
+		log.info("Listed oneById " + Thread.currentThread().getName());
 		return CompletableFuture.completedFuture(customerRepository.findById(id).map(this::convertToDTO)
 				.orElseThrow(() -> new EntityNotFoundException("Customer with id " + id + " not found")));
 	}
@@ -55,12 +61,16 @@ public class CustomerService {
 		 ExistingCustomer.setPhone(customerDto.getPhone());
 		 
 		 ExistingCustomer = customerRepository.save(ExistingCustomer);
+		 
+		log.info("update " + Thread.currentThread().getName());
 		 return CompletableFuture.completedFuture(convertToDTO(ExistingCustomer));
 	}
 	
 	//Delete
 	@Async
 	public CompletableFuture<String> deleteCustomer(Long id) {
+		 
+		log.info("delete " + Thread.currentThread().getName());
 		if(customerRepository.existsById(id)) {
 			customerRepository.deleteById(id);
 		} else {

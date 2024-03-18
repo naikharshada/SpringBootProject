@@ -1,0 +1,16 @@
+package com.example.demo.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailSenderServiceImpl implements EmailSenderService{
+	
+	@Autowired
+	private final JavaMailSender mailSender;
+
+	@Override
+	public void sendEmail(String to, String subject, String message) {
+
+	}
+
+}

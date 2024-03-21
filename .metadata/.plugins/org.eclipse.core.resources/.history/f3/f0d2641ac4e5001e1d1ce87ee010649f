@@ -1,0 +1,55 @@
+package com.example.demo.service;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
+
+@Service
+public class EmailSenderServiceImpl implements EmailSenderService{
+	
+	private final JavaMailSender mailSender;
+	
+	public EmailSenderServiceImpl(JavaMailSender mailSender) {
+        this.mailSender = mailSender;
+    }
+
+	/*@Override
+	public void sendEmail(String to, String subject, String message) {
+		
+		SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
+		simpleMailMessage.setFrom("naikharshada2002@gmail.com");
+		simpleMailMessage.setTo(to);
+		simpleMailMessage.setSubject(subject);
+		simpleMailMessage.setText(message);
+		
+		this.mailSender.send(simpleMailMessage);
+	}*/
+
+	@Override
+	public void sendEmail(String to, String subject, String message, MultipartFile attachment) throws MessagingException, IOException {
+		//to send attachment
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
+	   mimeMessageHelper.setFrom("naikharshada2002@gmail.com");
+	    mimeMessageHelper.setTo(to);
+	    mimeMessageHelper.setSubject(subject);
+	    mimeMessageHelper.setText(message);
+	    mimeMessageHelper.addAttachment(attachment.getOriginalFilename(), convertMultipartToFile(attachment, attachment.getOriginalFilename()));
+	    
+	    this.mailSender.send(mimeMessage);
+	    //return "success";
+	}
+	
+	private static File convertMultipartToFile(MultipartFile multipartFile, String fileName) throws IOException {
+		File convFile = new File(System.getProperty("java.io.tmpdir") + "/" + fileName);
+		multipartFile.transferTo(convFile);
+		return convFile;
+	}
+}

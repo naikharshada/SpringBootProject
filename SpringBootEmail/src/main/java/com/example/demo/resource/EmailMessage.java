@@ -1,18 +1,23 @@
 package com.example.demo.resource;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class EmailMessage {
 	
 	private String to;
 	private String subject;
 	private String message;
+	private MultipartFile attachment;
 	
 	public EmailMessage() {
 	}
 	
-	public EmailMessage(String to, String subject, String message) {
+	public EmailMessage(String to, String subject, String message, MultipartFile attachment) {
+		super();
 		this.to = to;
 		this.subject = subject;
 		this.message = message;
+		this.attachment = attachment;
 	}
 
 	public String getTo() {
@@ -37,5 +42,13 @@ public class EmailMessage {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public MultipartFile getAttachment() {
+		return attachment;
+	}
+
+	public void setAttachment(MultipartFile attachment) {
+		this.attachment = attachment;
 	}
 }

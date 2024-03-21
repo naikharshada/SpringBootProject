@@ -1,11 +1,15 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.resource.EmailMessage;
 import com.example.demo.service.EmailSenderService;
+
+import jakarta.mail.MessagingException;
 
 @RestController
 public class EmailController {
@@ -17,8 +21,8 @@ public class EmailController {
 	}
 
 	@PostMapping("/send-email")
-	public ResponseEntity sendEmail(@RequestBody EmailMessage emailMessage) {
-		this.emailSenderService.sendEmail(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage());
-		return ResponseEntity.ok("success");
+	public ResponseEntity sendEmail(@ModelAttribute EmailMessage emailMessage) throws MessagingException, IOException {
+		this.emailSenderService.sendEmail(emailMessage.getTo(), emailMessage.getSubject(), emailMessage.getMessage(), emailMessage.getAttachment());
+		return ResponseEntity.ok("Email Sent Successfully");
 	}
 }

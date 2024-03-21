@@ -1,0 +1,20 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.dto.RegisterDto;
+import com.example.demo.util.OtpUtil;
+
+@Service
+public class UserService {
+	
+	@Autowired
+	private OtpUtil otpUtil;
+
+	public String register(RegisterDto registerDto) {
+		otpUtil.generateOtp();
+		return null;
+	}
+
+}

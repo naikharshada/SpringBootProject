@@ -1,3 +1,0 @@
-spring.application.name=cloud-gateway2
-
-spring.cloud.gateway.mvc.routes[0].id = STUDENT-SERVICE
